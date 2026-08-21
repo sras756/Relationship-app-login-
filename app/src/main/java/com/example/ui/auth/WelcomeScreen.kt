@@ -25,8 +25,7 @@ import com.example.ui.theme.PrimaryGradient
 @Composable
 fun WelcomeScreen(
     onNavigateToLogin: () -> Unit,
-    onNavigateToRegister: () -> Unit,
-    onNavigateToPhoneAuth: () -> Unit
+    onNavigateToRegister: () -> Unit
 ) {
     Box(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
         // Blur circles using radial gradients
@@ -117,43 +116,32 @@ fun WelcomeScreen(
                     .padding(24.dp)
             ) {
                 GradientButton(
-                    text = "Phone Number",
-                    onClick = onNavigateToPhoneAuth
+                    text = "Create Account",
+                    onClick = onNavigateToRegister
                 )
 
-                Spacer(modifier = Modifier.height(16.dp))
-                
-                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Button(
-                        onClick = onNavigateToRegister,
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(56.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.White.copy(alpha = 0.05f),
-                            contentColor = Color.White
-                        ),
-                        shape = RoundedCornerShape(16.dp)
-                    ) {
-                        Text("Sign Up", fontWeight = FontWeight.Bold)
-                    }
-                    Button(
-                        onClick = onNavigateToLogin,
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(56.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.White.copy(alpha = 0.05f),
-                            contentColor = Color.White
-                        ),
-                        shape = RoundedCornerShape(16.dp)
-                    ) {
-                        Text("Log In", fontWeight = FontWeight.Bold)
-                    }
+                Spacer(modifier = Modifier.height(14.dp))
+
+                OutlinedButton(
+                    onClick = onNavigateToLogin,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(56.dp),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = Color.White
+                    ),
+                    border = androidx.compose.foundation.BorderStroke(
+                        1.dp,
+                        Color.White.copy(alpha = 0.2f)
+                    ),
+                    shape = RoundedCornerShape(16.dp)
+                ) {
+                    Text("Log In", fontWeight = FontWeight.Bold)
                 }
             }
-            
+
             Spacer(modifier = Modifier.height(32.dp))
         }
     }
 }
+

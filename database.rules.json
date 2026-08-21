@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "transit_inbox": {
+      "$receiverUid": {
+        // Only the intended recipient can read their transit messages
+        ".read": "auth != null && auth.uid == $receiverUid",
+        "$messageId": {
+          // Any authenticated sender can drop a message into the recipient's transit inbox
+          ".write": "auth != null && (auth.uid == $receiverUid || !data.exists() || auth.uid == data.child('senderId').val())"
+        }
+      }
+    },
+    "typing_signals": {
+      "$conversationId": {
+        ".read": "auth != null",
+        "$userId": {
+          ".write": "auth != null && auth.uid == $userId"
+        }
+      }
+    },
+    "user_presence": {
+      ".read": "auth != null",
+      "$userId": {
+        ".write": "auth != null && auth.uid == $userId"
+      }
+    }
+  }
+}

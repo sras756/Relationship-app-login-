@@ -15,8 +15,7 @@ fun AuthNavigation(onAuthComplete: () -> Unit) {
         composable("welcome") {
             WelcomeScreen(
                 onNavigateToLogin = { navController.navigate("login") },
-                onNavigateToRegister = { navController.navigate("register") },
-                onNavigateToPhoneAuth = { navController.navigate("phone") }
+                onNavigateToRegister = { navController.navigate("register") }
             )
         }
         composable("login") {
@@ -44,13 +43,6 @@ fun AuthNavigation(onAuthComplete: () -> Unit) {
                 viewModel = authViewModel
             )
         }
-        composable("phone") {
-            PhoneAuthScreen(
-                onNavigateBack = { navController.popBackStack() },
-                onAuthSuccess = onAuthComplete,
-                viewModel = authViewModel
-            )
-        }
         composable("forgot_password") {
             ForgotPasswordScreen(
                 onNavigateBack = { navController.popBackStack() },
@@ -59,3 +51,4 @@ fun AuthNavigation(onAuthComplete: () -> Unit) {
         }
     }
 }
+
